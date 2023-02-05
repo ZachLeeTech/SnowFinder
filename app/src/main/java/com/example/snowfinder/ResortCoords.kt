@@ -1,8 +1,6 @@
 package com.example.snowfinder
 
-import android.app.Application
-
-class ResortCoords: Application(){
+object ResortCoords{
     var resortMap = mapOf(
         "Blue Mountain Resort, Collingwood" to listOf(44.500, -80.316),
         "Horseshoe Resort, Barrie" to listOf(44.487, -79.764),

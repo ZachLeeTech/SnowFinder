@@ -1,6 +1,8 @@
 package com.example.snowfinder
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -10,6 +12,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -20,25 +23,55 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.snowfinder.ui.theme.SnowFinderTheme
 import com.example.snowfinder.ui.theme.TranslucentBlue
+import com.example.snowfinder.utils.Constants
+import com.example.snowfinder.viewmodel.WeatherViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.DateFormat
 import java.util.*
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity2 : ComponentActivity() {
+
+    @SuppressLint("StateFlowValueCalledInComposition")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             SnowFinderTheme {
+                val viewModel = hiltViewModel<WeatherViewModel>()
                 val name = intent.getStringExtra("name")
                 if (name != null) {
-                    WeatherDisplay(name,"Broken Clouds", "1", "2", "3", 2)
+                    val coords = ResortCoords.resortMap[name]
+                    val lat = coords?.get(0).toString()
+                    val lon = coords?.get(1).toString()
+                    viewModel.load(lat, lon, Constants.API_KEY)
+                    var state = viewModel.weatherData.collectAsState(initial = null)
+                    val weatherData = state
+
+                    val innerData = weatherData.value?.data?.get(0)
+                    val iconData = innerData?.weather
+
+                    val context = LocalContext.current
+                    val id = context.resources.getIdentifier("drawable/" + iconData?.icon, null,
+                    context.packageName)
+
+
+                    if (iconData != null) {
+                        WeatherDisplay(name,
+                            iconData.description,
+                            innerData.temp.toString(),
+                            innerData.app_temp.toString(),
+                            innerData.snow.toString(), id)
+                    }
                 }
             }
         }
     }
 }
+
 
 @Composable
 fun WeatherDisplay(name: String,

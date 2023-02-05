@@ -58,7 +58,7 @@ fun Content(){
                 )
             }
 
-            val resortData = ResortCoords().resortMap
+            val resortData = ResortCoords.resortMap
             Column(horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier.padding(0.dp, 50.dp).fillMaxHeight()) {

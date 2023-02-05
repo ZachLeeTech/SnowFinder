@@ -1,6 +1,7 @@
 package com.example.snowfinder.di
 
 
+import android.graphics.drawable.Drawable.ConstantState
 import com.example.snowfinder.api.ApiService
 import com.example.snowfinder.utils.Constants
 import dagger.Module
@@ -14,13 +15,13 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
-    @Provides
-    fun providesBaseUrl() = Constants.BASE_URL
 
     @Provides
     @Singleton
-    fun provideRetrofitInstance(BASE_URL:String):ApiService =
+    fun provideRetrofitInstance():ApiService =
         Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory)
+            .baseUrl(Constants.BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(ApiService::class.java)
 }
