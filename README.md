@@ -15,7 +15,7 @@ This can be done using Android Studio.
 - You will be presented with some options for resorts
  - When you select one, it will navigate to the Resort Weather Data Page
 
-![alt text](https://github.com/ZachLeeTech/SnowFinder/blob/main/homepagescreenshot.JPG?raw=true)
+![alt text](https://github.com/ZachLeeTech/SnowFinder/blob/main/homepagescreenshot.JPG?raw=true {width=40px height=400px})
 
 ### Resort Weather Data Page
 - Here we display relevant data for the resort which includes:
