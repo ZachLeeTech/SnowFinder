@@ -19,9 +19,9 @@ class WeatherViewModel @Inject constructor(private val service: ApiService): Vie
         viewModelScope.launch{
             val weatherResp = service.getWeather(lat, lon, key)
             if (weatherResp.isSuccessful){
-                weatherData.value = service.getWeather(lat, lon, key).body()
+                weatherData.value = weatherResp.body()
             } else{
-                Log.e("BRK_ViewModel", "error, weatherdata call failed")
+                Log.e("BRK_ViewModel", "error, weatherdata call failed: ${weatherResp.body()}")
             }
 
         }

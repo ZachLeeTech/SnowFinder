@@ -65,6 +65,8 @@ class MainActivity2 : ComponentActivity() {
                             innerData.temp.toString(),
                             innerData.app_temp.toString(),
                             innerData.snow.toString(), id)
+                    } else {
+                        Log.e("no work", "no worked")
                     }
                 }
             }
