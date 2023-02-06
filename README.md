@@ -18,7 +18,7 @@ This can be done using Android Studio.
 <img src="https://github.com/ZachLeeTech/SnowFinder/blob/main/homepagescreenshot.JPG?raw=true" style="width:400px; height:100%"/>
 
 ### Resort Weather Data Page
-- Here we display relevant data for the resort which includes:
+Here we display relevant data for the resort which includes:
  - Resort name
  - Current time and date
  - An icon representing the current weather
