@@ -1,14 +1,11 @@
 # SnowFinder
-An android app that allows you to track weather data for popular ski resorts in Ontario.
+An Android app that allows you to track weather data for popular ski resorts in Ontario.
 
-How to run the app:
+## The app is currently not deployed
+
+## For local development
 --
-This can be done using Android Studio.
-1. Clone the repository
-3. Open the project in Android Studio
-4. Install necessary dependencies
-5. Create an Android virtual device
-6. Run the app on the emulator
+Android Studio is recommended.
 
 # Features:
 ### Home Page 
